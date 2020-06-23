@@ -76,7 +76,8 @@ namespace :data do
           content.each do |item|
             i = ManifestoItem.find_or_initialize_by(
               position: item.fetch('position'),
-              manifesto_section_id: s.id
+              manifesto_section_id: s.id,
+              uuid: item.fetch('uuid', nil)
             )
 
             i.content = item.fetch('html')
@@ -98,7 +99,8 @@ namespace :data do
             subsection.fetch('content').each do |item|
               i = ManifestoItem.find_or_initialize_by(
                 position: item.fetch('position'),
-                manifesto_section_id: subs.id
+                manifesto_section_id: subs.id,
+                uuid: item.fetch('uuid', nil)
               )
 
               i.content = item.fetch('html')
@@ -108,7 +110,6 @@ namespace :data do
           end
         end
       end
-
     end
   end
 end

@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2019_09_22_221118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 2019_09_22_221118) do
     t.integer "version"
     t.integer "comments_count"
     t.bigint "annotation_id"
+    t.uuid "uuid", default: -> { "uuid_generate_v4()" }
     t.index ["annotation_id"], name: "index_manifesto_items_on_annotation_id"
     t.index ["manifesto_item_id"], name: "index_manifesto_items_on_manifesto_item_id"
     t.index ["manifesto_section_id"], name: "index_manifesto_items_on_manifesto_section_id"
